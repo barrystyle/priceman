@@ -35,6 +35,8 @@ def update_local_currencies(base, apikey, dbname, username, password):
             cur_id = item['id']
             cur_ticker = item['symbol']
             cur_price = fetch_vs_currency(cur_ticker, base, apikey)
+            if cur_price is None:
+                pass
             sql = 'UPDATE coins ' + \
                   'SET price = ' + str(cur_price) + ' ' + \
                   'WHERE id = ' + str(cur_id)
